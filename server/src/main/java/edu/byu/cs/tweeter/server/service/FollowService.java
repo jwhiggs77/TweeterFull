@@ -1,7 +1,21 @@
 package edu.byu.cs.tweeter.server.service;
 
+import java.util.Random;
+
+import edu.byu.cs.tweeter.model.net.request.FollowRequest;
+import edu.byu.cs.tweeter.model.net.request.FollowersCountRequest;
+import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
+import edu.byu.cs.tweeter.model.net.request.FollowingCountRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowingRequest;
+import edu.byu.cs.tweeter.model.net.request.IsFollowerRequest;
+import edu.byu.cs.tweeter.model.net.request.UnfollowRequest;
+import edu.byu.cs.tweeter.model.net.response.FollowResponse;
+import edu.byu.cs.tweeter.model.net.response.FollowersCountResponse;
+import edu.byu.cs.tweeter.model.net.response.FollowersResponse;
+import edu.byu.cs.tweeter.model.net.response.FollowingCountResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowingResponse;
+import edu.byu.cs.tweeter.model.net.response.IsFollowerResponse;
+import edu.byu.cs.tweeter.model.net.response.UnfollowResponse;
 import edu.byu.cs.tweeter.server.dao.FollowDAO;
 
 /**
@@ -27,6 +41,31 @@ public class FollowService {
         return getFollowingDAO().getFollowees(request);
     }
 
+    public FollowersResponse getFollowers(FollowersRequest request) {
+        if(request.getFollowingAlias() == null) {
+            throw new RuntimeException("[BadRequest] Request needs to have a following alias");
+        } else if(request.getLimit() <= 0) {
+            throw new RuntimeException("[BadRequest] Request needs to have a positive limit");
+        }
+        return getFollowersDAO().getFollowers(request);
+    }
+
+    public FollowersCountResponse getFollowersCount(FollowersCountRequest request) {
+        return getFollowersDAO().getFollowerCount(request.getTargetUser());
+    }
+
+    public FollowingCountResponse getFollowingCount(FollowingCountRequest request) {
+        return getFollowersDAO().getFolloweeCount(request.getTargetUser());
+    }
+
+    public IsFollowerResponse isFollower(IsFollowerRequest request) {
+        return new IsFollowerResponse(new Random().nextInt() > 0);
+    }
+
+    FollowDAO getFollowersDAO() {
+        return new FollowDAO();
+    }
+
     /**
      * Returns an instance of {@link FollowDAO}. Allows mocking of the FollowDAO class
      * for testing purposes. All usages of FollowDAO should get their FollowDAO
@@ -36,5 +75,13 @@ public class FollowService {
      */
     FollowDAO getFollowingDAO() {
         return new FollowDAO();
+    }
+
+    public FollowResponse follow(FollowRequest request) {
+        return new FollowResponse();
+    }
+
+    public UnfollowResponse unfollow(UnfollowRequest request) {
+        return new UnfollowResponse();
     }
 }

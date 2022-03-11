@@ -26,6 +26,7 @@ public class AndroidTestsWorkingTest {
     public void testAsserts() {
         Assert.assertTrue(true);
     }
+
     @Test
     public void testMockitoSpy() {
         Foo f = Mockito.spy(new Foo());

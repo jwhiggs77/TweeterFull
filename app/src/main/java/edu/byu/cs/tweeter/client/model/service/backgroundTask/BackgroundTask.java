@@ -4,8 +4,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+
+import edu.byu.cs.tweeter.client.model.net.ServerFacade;
+import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.util.FakeData;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public abstract class BackgroundTask implements Runnable {
     private static final String LOG_TAG = "BackgroundTask";
@@ -22,7 +27,7 @@ public abstract class BackgroundTask implements Runnable {
         this.messageHandler = messageHandler;
     }
 
-    protected void sendSuccessMessage() {
+    protected void sendSuccessMessage() throws IOException, TweeterRemoteException {
         Bundle msgBundle = createBundle(true);
         loadSuccessBundle(msgBundle);
         sendMessage(msgBundle);
@@ -32,7 +37,6 @@ public abstract class BackgroundTask implements Runnable {
     public void run() {
         try {
             processTask();
-            
             sendSuccessMessage();
         } catch (Exception ex) {
             Log.e(LOG_TAG, ex.getMessage(), ex);
@@ -40,17 +44,17 @@ public abstract class BackgroundTask implements Runnable {
         }
     }
 
-    protected abstract void processTask();
+    protected abstract boolean processTask() throws IOException, TweeterRemoteException;
 
-    protected abstract void loadSuccessBundle(Bundle msgBundle);
+    protected abstract void loadSuccessBundle(Bundle msgBundle) throws IOException, TweeterRemoteException;
 
-    private void sendFailedMessage(String message) {
+    protected void sendFailedMessage(String message) {
         Bundle msgBundle = createBundle(false);
         msgBundle.putString(MESSAGE_KEY, message);
         sendMessage(msgBundle);
     }
 
-    private void sendExceptionMessage(Exception exception) {
+    protected void sendExceptionMessage(Exception exception) {
         Bundle msgBundle = createBundle(false);
         msgBundle.putSerializable(EXCEPTION_KEY, exception);
         sendMessage(msgBundle);
@@ -71,5 +75,9 @@ public abstract class BackgroundTask implements Runnable {
 
     protected FakeData getFakeData() {
         return new FakeData();
+    }
+
+    public ServerFacade getServerFacade() {
+        return new ServerFacade();
     }
 }

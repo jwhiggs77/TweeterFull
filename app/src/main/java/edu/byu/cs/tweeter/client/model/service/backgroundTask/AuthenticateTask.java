@@ -2,11 +2,15 @@ package edu.byu.cs.tweeter.client.model.service.backgroundTask;
 
 import android.os.Bundle;
 import android.os.Handler;
+
+import java.io.IOException;
+
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.util.Pair;
 
-public class AuthenticateTask extends BackgroundTask {
+public abstract class AuthenticateTask extends BackgroundTask {
 
     public static final String USER_KEY = "user";
     public static final String AUTH_TOKEN_KEY = "auth-token";
@@ -20,6 +24,14 @@ public class AuthenticateTask extends BackgroundTask {
      */
     private final String password;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     private User currentUser;
     private AuthToken authToken;
 
@@ -29,18 +41,15 @@ public class AuthenticateTask extends BackgroundTask {
         this.password = password;
     }
 
-    private Pair<User, AuthToken> doLogin() {
-        currentUser = getFakeData().getFirstUser();
-        authToken = getFakeData().getAuthToken();
-        return new Pair<>(currentUser, authToken);
-    }
+    protected abstract Pair<User, AuthToken> doLogin() throws IOException, TweeterRemoteException;
 
     @Override
-    protected void processTask() {
+    protected boolean processTask() throws IOException, TweeterRemoteException {
         Pair<User, AuthToken> loginResult = doLogin();
         currentUser = loginResult.getFirst();
         authToken = loginResult.getSecond();
-        sendSuccessMessage();
+//        sendSuccessMessage();
+        return true;
     }
 
     @Override

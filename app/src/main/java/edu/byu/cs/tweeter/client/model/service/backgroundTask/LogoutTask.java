@@ -2,23 +2,29 @@ package edu.byu.cs.tweeter.client.model.service.backgroundTask;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
+
+import java.io.IOException;
 
 import edu.byu.cs.tweeter.model.domain.AuthToken;
+import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
+import edu.byu.cs.tweeter.model.net.request.LogoutRequest;
+import edu.byu.cs.tweeter.model.net.response.LogoutResponse;
 
 /**
  * Background task that logs out a user (i.e., ends a session).
  */
 public class LogoutTask extends AuthenticatedTask {
+    static final String URL_PATH = "/logout";
 
     public LogoutTask(AuthToken authToken, Handler messageHandler) {
         super(messageHandler, authToken);
     }
 
     @Override
-    protected void processTask() {
-        // TODO: This is empty only cuz we're using dummy data
+    protected boolean processTask() throws IOException, TweeterRemoteException {
+        LogoutRequest request = new LogoutRequest(getAuthToken());
+        LogoutResponse response = getServerFacade().logout(request, URL_PATH);
+        return response.isSuccess();
     }
 
     @Override

@@ -108,15 +108,15 @@ public class MainActivity extends AppCompatActivity implements StatusDialogFragm
         followButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                followButton.setEnabled(false);
+//                followButton.setEnabled(false);
 
                 if (followButton.getText().toString().equals(v.getContext().getString(R.string.following))) {
                     presenter.unfollow(selectedUser);
-
+                    followButton.setEnabled(true);
                     Toast.makeText(MainActivity.this, "Removing " + selectedUser.getName() + "...", Toast.LENGTH_LONG).show();
                 } else {
                     presenter.follow(selectedUser);
-
+                    followButton.setEnabled(false);
                     Toast.makeText(MainActivity.this, "Adding " + selectedUser.getName() + "...", Toast.LENGTH_LONG).show();
                 }
             }
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements StatusDialogFragm
 
     public void updateFollowButton(boolean removed) {
         // If follow relationship was removed.
-        if (removed) {
+        if (!removed) {
             followButton.setText(R.string.follow);
             followButton.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         } else {
@@ -255,10 +255,10 @@ public class MainActivity extends AppCompatActivity implements StatusDialogFragm
     }
 
     @Override
-    public void setFollow() {
+    public void setFollow(boolean isTrue) {
         updateSelectedUserFollowingAndFollowers(selectedUser);
-        updateFollowButton(false);
-        followButton.setEnabled(true);
+        updateFollowButton(isTrue);
+        followButton.setEnabled(isTrue);
     }
 
     @Override

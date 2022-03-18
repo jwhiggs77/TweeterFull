@@ -14,7 +14,7 @@ public class MainActivityPresenter extends Presenter {
     public interface View extends Presenter.View {
         void logout();
 
-        void setFollow();
+        void setFollow(boolean isTrue);
 
         void checkFollower(boolean isFollower);
 
@@ -131,7 +131,7 @@ public class MainActivityPresenter extends Presenter {
 
         @Override
         public void handleSuccess() {
-            view.setFollow();
+            view.setFollow(true);
         }
 
         @Override
@@ -148,7 +148,7 @@ public class MainActivityPresenter extends Presenter {
 
         @Override
         public void handleSuccess() {
-            view.setFollow();
+            view.setFollow(false);
         }
 
         @Override

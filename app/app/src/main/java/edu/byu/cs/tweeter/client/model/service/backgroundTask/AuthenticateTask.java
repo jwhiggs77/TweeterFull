@@ -35,13 +35,13 @@ public class AuthenticateTask extends BackgroundTask {
         return new Pair<>(currentUser, authToken);
     }
 
-    @Override
-    protected void processTask() {
-        Pair<User, AuthToken> loginResult = doLogin();
-        currentUser = loginResult.getFirst();
-        authToken = loginResult.getSecond();
-        sendSuccessMessage();
-    }
+//    @Override
+//    protected void processTask() {
+//        Pair<User, AuthToken> loginResult = doLogin();
+//        currentUser = loginResult.getFirst();
+//        authToken = loginResult.getSecond();
+//        sendSuccessMessage();
+//    }
 
     @Override
     protected void loadSuccessBundle(Bundle msgBundle) {

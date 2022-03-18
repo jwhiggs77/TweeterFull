@@ -13,8 +13,8 @@ import edu.byu.cs.tweeter.server.service.UserService;
  */
 public class LoginHandler implements RequestHandler<LoginRequest, LoginResponse> {
     @Override
-    public LoginResponse handleRequest(LoginRequest loginRequest, Context context) {
+    public LoginResponse handleRequest(LoginRequest request, Context context) {
         UserService userService = new UserService();
-        return userService.login(loginRequest);
+        return userService.login(request);
     }
 }

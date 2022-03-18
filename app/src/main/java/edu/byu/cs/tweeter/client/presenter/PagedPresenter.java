@@ -63,8 +63,8 @@ public abstract class PagedPresenter<T> extends Presenter {
         @Override
         public void handleSuccess(List<T> itemList, boolean hasMorePages) {
             setLoading(false);
-            view.setLoadingStatus(isLoading());
             lastItem = (itemList.size() > 0) ? itemList.get(itemList.size() - 1) : null;
+            view.setLoadingStatus(isLoading());
             setHasMorePages(hasMorePages);
             view.addItemList(itemList);
         }

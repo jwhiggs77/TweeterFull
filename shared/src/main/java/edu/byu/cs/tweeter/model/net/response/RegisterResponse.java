@@ -10,7 +10,7 @@ public class RegisterResponse extends Response {
 
     public RegisterResponse(String firstName, String lastName, String username, String password, String image) {
         super(true);
-        this.user = new User(firstName, lastName, username, image);
+        this.user = new User(firstName, lastName, username, password, image);
     }
 
     public User getUser() {

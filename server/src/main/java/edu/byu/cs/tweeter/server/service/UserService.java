@@ -19,9 +19,22 @@ import edu.byu.cs.tweeter.model.net.response.LogoutResponse;
 import edu.byu.cs.tweeter.model.net.response.RegisterResponse;
 import edu.byu.cs.tweeter.model.net.response.StoryResponse;
 import edu.byu.cs.tweeter.model.net.response.UserResponse;
+import edu.byu.cs.tweeter.server.dao.UserDAO;
+import edu.byu.cs.tweeter.server.dao.factory.DAOFactory;
 import edu.byu.cs.tweeter.util.FakeData;
 
 public class UserService {
+
+    DAOFactory factory;
+
+    public UserService(DAOFactory factory) {
+        this.factory = factory;
+    }
+
+
+//    UserDAO getUserDAO() {
+//        return new UserDAO();
+//    }
 
     public LoginResponse login(LoginRequest request) {
         if (request.getUsername() != null) return new LoginResponse("[BadRequest] Missing a username");
@@ -43,8 +56,10 @@ public class UserService {
         if (request.getFirstName() != null) new RegisterResponse("[BadRequest] Missing a first name");
         if (request.getLastName() != null) new RegisterResponse("[BadRequest] Missing a last name");
 
+        return factory.makeUserDAO().register(request.getFirstName(), request.getLastName(), request.getUsername(), request.getPassword(), request.getImage());
+
         // TODO: Generates dummy data. Replace with a real implementation.
-        return new RegisterResponse("firstName", "lastName", "@username", "password", "image");
+//        return new RegisterResponse("firstName", "lastName", "@username", "password", "image");
     }
 
 //    private <T> T checkInput(String input, T response) {

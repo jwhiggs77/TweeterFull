@@ -1,11 +1,11 @@
 package edu.byu.cs.tweeter.server.dao;
 
-import edu.byu.cs.tweeter.model.net.response.RegisterResponse;
-
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.document.*;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -13,6 +13,8 @@ import com.amazonaws.services.s3.model.Bucket;
 
 import java.util.List;
 import java.util.UUID;
+
+import edu.byu.cs.tweeter.model.net.response.RegisterResponse;
 
 public class DynamoUserDAO implements UserDAO {
     private final static String REGION = "us-west-2";
@@ -39,7 +41,7 @@ public class DynamoUserDAO implements UserDAO {
                     .standard().withRegion(REGION).build();
 
             s3client.putObject(BUCKET_NAME, "profilePic", image);
-            imageURL = s3client.getObjectAsString(BUCKET_NAME, "profilePic")
+            imageURL = s3client.getObjectAsString(BUCKET_NAME, "profilePic");
 
             System.out.println("Adding a new item...");
             PutItemOutcome outcome = table

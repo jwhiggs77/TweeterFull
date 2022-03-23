@@ -269,7 +269,7 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
          * loading footer view) at the bottom of the list.
          */
         private void addLoadingFooter() {
-            addItem(new User("Dummy", "User", ""));
+            addItem(new User("Dummy", "User", "", ""));
         }
 
         /**

@@ -11,26 +11,26 @@ import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.request.FollowingRequest;
 import edu.byu.cs.tweeter.model.net.response.FollowingResponse;
-import edu.byu.cs.tweeter.server.dao.FollowDAO;
+import edu.byu.cs.tweeter.server.dao.concrete.DynamoFollowDAO;
 
 public class FollowServiceTest {
 
     private FollowingRequest request;
     private FollowingResponse expectedResponse;
-    private FollowDAO mockFollowDAO;
+    private DynamoFollowDAO mockFollowDAO;
     private FollowService followServiceSpy;
 
     @Before
     public void setup() {
         AuthToken authToken = new AuthToken();
 
-        User currentUser = new User("FirstName", "LastName", null);
+        User currentUser = new User("FirstName", "LastName", null, null);
 
-        User resultUser1 = new User("FirstName1", "LastName1",
+        User resultUser1 = new User("FirstName1", "LastName1", null,
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
-        User resultUser2 = new User("FirstName2", "LastName2",
+        User resultUser2 = new User("FirstName2", "LastName2", null,
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/daisy_duck.png");
-        User resultUser3 = new User("FirstName3", "LastName3",
+        User resultUser3 = new User("FirstName3", "LastName3", null,
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/daisy_duck.png");
 
         // Setup a request object to use in the tests
@@ -38,7 +38,7 @@ public class FollowServiceTest {
 
         // Setup a mock FollowDAO that will return known responses
         expectedResponse = new FollowingResponse(Arrays.asList(resultUser1, resultUser2, resultUser3), false);
-        mockFollowDAO = Mockito.mock(FollowDAO.class);
+        mockFollowDAO = Mockito.mock(DynamoFollowDAO.class);
         Mockito.when(mockFollowDAO.getFollowees(request)).thenReturn(expectedResponse);
 
         followServiceSpy = Mockito.spy(FollowService.class);
@@ -47,7 +47,7 @@ public class FollowServiceTest {
 
     /**
      * Verify that the {@link FollowService#getFollowees(FollowingRequest)}
-     * method returns the same result as the {@link FollowDAO} class.
+     * method returns the same result as the {@link DynamoFollowDAO} class.
      */
     @Test
     public void testGetFollowees_validRequest_correctResponse() {

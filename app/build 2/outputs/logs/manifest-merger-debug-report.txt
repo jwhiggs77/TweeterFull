@@ -1,0 +1,231 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+MERGED from [com.google.android.material:material:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/774b741aaa5f8ba965bfa9409a10b7e4/transformed/material-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/joshuahiggins/.gradle/caches/transforms-3/e2259a460217784f7559d8622336adf7/transformed/appcompat-1.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/joshuahiggins/.gradle/caches/transforms-3/e3314239e07742c56bbfd2d5ce6e1334/transformed/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a28cdc4a88114cbf9acc22275ad211cb/transformed/lifecycle-extensions-2.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/92108fe892ba50243e3443cc99304755/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f4e230e3cb4281e96b33b14a6866dcdd/transformed/fragment-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/3c94f6cf810bff81cb29b899accd059f/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/5717f58461e1fdf3a6bcd838de92d32b/transformed/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/eea3b8d59f9fbbd72e86f031390b346c/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/9d6356033ab0245e91a2571a3e96fead/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/2374ae36edd6a91e2d4344e14b7f0fe0/transformed/vectordrawable-1.0.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/ff6ec36a5e2bf5584693f912ce027d59/transformed/transition-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/af71616dd5766e11a7ec8b21896cb424/transformed/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a4f77cdfc67b36dac0b1351ef41cba41/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/cd1681c9478f2e669ccf5ce7ec81b512/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/9e27752e98b5a9a82ccfdc5bc3cc95cc/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8f870ccc661b4d3465afe9cfd1149d95/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/ab40341133f837bc764b4e4d1ee225d4/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/298d97d6ebd59e8d3af69e2312e9d6f3/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/baffc9064024526e6597f4b630fd3d85/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/933f008984edd056dcb4da38284a772d/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3e2fd5c7db7e451284faffdf40dc683/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a84d28207fcd4e5c31b8e6c3f894ba67/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/09330592bb06b8685589d56559276f54/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a6acae3358082a08af541e44a30659e7/transformed/jetified-lifecycle-service-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/e558d9e322428960a1fbb71c4459ef2a/transformed/lifecycle-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/65e607e18fc40ee99fcb681d585ea2c3/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8c6776326f36b82cd67c23bf9ae2be65/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/fdccdbb60a6e33b8abd72757ae468529/transformed/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/326a009667b4a0b521a6aee0e004da58/transformed/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/32869a0a8792b91bfd26488b8c0a151d/transformed/exifinterface-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8e189b91d0e8f04e02508ea81eb177b0/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/6abbe5d15c0e48901b232ca576eaabe1/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/780aa35dad1655dbce7606753179fa72/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3856a52624f5318cab0503386778ce7/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+	package
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:3:5-32
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:1-29:12
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:6:22-77
+application
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:8:5-27:19
+MERGED from [com.google.android.material:material:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/774b741aaa5f8ba965bfa9409a10b7e4/transformed/material-1.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/774b741aaa5f8ba965bfa9409a10b7e4/transformed/material-1.0.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/joshuahiggins/.gradle/caches/transforms-3/e3314239e07742c56bbfd2d5ce6e1334/transformed/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/joshuahiggins/.gradle/caches/transforms-3/e3314239e07742c56bbfd2d5ce6e1334/transformed/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a28cdc4a88114cbf9acc22275ad211cb/transformed/lifecycle-extensions-2.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a28cdc4a88114cbf9acc22275ad211cb/transformed/lifecycle-extensions-2.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:7:5-12:19
+MERGED from [androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3e2fd5c7db7e451284faffdf40dc683/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3e2fd5c7db7e451284faffdf40dc683/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:22:5-28:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:22:18-86
+	android:supportsRtl
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:14:9-40
+activity#edu.byu.cs.tweeter.client.view.login.LoginActivity
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:15:9-23:20
+	android:label
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:17:13-57
+	android:theme
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:18:13-56
+	android:name
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:16:13-78
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:19:13-22:29
+action#android.intent.action.MAIN
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:21:27-74
+activity#edu.byu.cs.tweeter.client.view.main.MainActivity
+ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:24:9-26:68
+	android:label
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:26:13-56
+	android:name
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:25:13-76
+uses-sdk
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/774b741aaa5f8ba965bfa9409a10b7e4/transformed/material-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/774b741aaa5f8ba965bfa9409a10b7e4/transformed/material-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/joshuahiggins/.gradle/caches/transforms-3/e2259a460217784f7559d8622336adf7/transformed/appcompat-1.0.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] /Users/joshuahiggins/.gradle/caches/transforms-3/e2259a460217784f7559d8622336adf7/transformed/appcompat-1.0.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/joshuahiggins/.gradle/caches/transforms-3/e3314239e07742c56bbfd2d5ce6e1334/transformed/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/joshuahiggins/.gradle/caches/transforms-3/e3314239e07742c56bbfd2d5ce6e1334/transformed/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a28cdc4a88114cbf9acc22275ad211cb/transformed/lifecycle-extensions-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a28cdc4a88114cbf9acc22275ad211cb/transformed/lifecycle-extensions-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/92108fe892ba50243e3443cc99304755/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/92108fe892ba50243e3443cc99304755/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f4e230e3cb4281e96b33b14a6866dcdd/transformed/fragment-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f4e230e3cb4281e96b33b14a6866dcdd/transformed/fragment-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/3c94f6cf810bff81cb29b899accd059f/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/3c94f6cf810bff81cb29b899accd059f/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/5717f58461e1fdf3a6bcd838de92d32b/transformed/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/5717f58461e1fdf3a6bcd838de92d32b/transformed/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/eea3b8d59f9fbbd72e86f031390b346c/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/eea3b8d59f9fbbd72e86f031390b346c/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/9d6356033ab0245e91a2571a3e96fead/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/9d6356033ab0245e91a2571a3e96fead/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/2374ae36edd6a91e2d4344e14b7f0fe0/transformed/vectordrawable-1.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/2374ae36edd6a91e2d4344e14b7f0fe0/transformed/vectordrawable-1.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/ff6ec36a5e2bf5584693f912ce027d59/transformed/transition-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/ff6ec36a5e2bf5584693f912ce027d59/transformed/transition-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/af71616dd5766e11a7ec8b21896cb424/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/af71616dd5766e11a7ec8b21896cb424/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a4f77cdfc67b36dac0b1351ef41cba41/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a4f77cdfc67b36dac0b1351ef41cba41/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/cd1681c9478f2e669ccf5ce7ec81b512/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/cd1681c9478f2e669ccf5ce7ec81b512/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/9e27752e98b5a9a82ccfdc5bc3cc95cc/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/9e27752e98b5a9a82ccfdc5bc3cc95cc/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8f870ccc661b4d3465afe9cfd1149d95/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8f870ccc661b4d3465afe9cfd1149d95/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/ab40341133f837bc764b4e4d1ee225d4/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/ab40341133f837bc764b4e4d1ee225d4/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/298d97d6ebd59e8d3af69e2312e9d6f3/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/298d97d6ebd59e8d3af69e2312e9d6f3/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/baffc9064024526e6597f4b630fd3d85/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/baffc9064024526e6597f4b630fd3d85/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/933f008984edd056dcb4da38284a772d/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/933f008984edd056dcb4da38284a772d/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3e2fd5c7db7e451284faffdf40dc683/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3e2fd5c7db7e451284faffdf40dc683/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a84d28207fcd4e5c31b8e6c3f894ba67/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a84d28207fcd4e5c31b8e6c3f894ba67/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/09330592bb06b8685589d56559276f54/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/09330592bb06b8685589d56559276f54/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a6acae3358082a08af541e44a30659e7/transformed/jetified-lifecycle-service-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/a6acae3358082a08af541e44a30659e7/transformed/jetified-lifecycle-service-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/e558d9e322428960a1fbb71c4459ef2a/transformed/lifecycle-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/e558d9e322428960a1fbb71c4459ef2a/transformed/lifecycle-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/65e607e18fc40ee99fcb681d585ea2c3/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/65e607e18fc40ee99fcb681d585ea2c3/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8c6776326f36b82cd67c23bf9ae2be65/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8c6776326f36b82cd67c23bf9ae2be65/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/fdccdbb60a6e33b8abd72757ae468529/transformed/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/fdccdbb60a6e33b8abd72757ae468529/transformed/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/326a009667b4a0b521a6aee0e004da58/transformed/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/326a009667b4a0b521a6aee0e004da58/transformed/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/32869a0a8792b91bfd26488b8c0a151d/transformed/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/32869a0a8792b91bfd26488b8c0a151d/transformed/exifinterface-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8e189b91d0e8f04e02508ea81eb177b0/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/8e189b91d0e8f04e02508ea81eb177b0/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/6abbe5d15c0e48901b232ca576eaabe1/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/6abbe5d15c0e48901b232ca576eaabe1/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/780aa35dad1655dbce7606753179fa72/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/780aa35dad1655dbce7606753179fa72/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3856a52624f5318cab0503386778ce7/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/f3856a52624f5318cab0503386778ce7/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		ADDED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+provider#com.squareup.picasso.PicassoProvider
+ADDED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
+	android:authorities
+		ADDED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
+	android:exported
+		ADDED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79

@@ -27,7 +27,7 @@ public class Cache {
     }
 
     private void initialize() {
-        currUser = new User(null, null, null);
+        currUser = new User(null, null, null, null);
         currUserAuthToken = null;
     }
 

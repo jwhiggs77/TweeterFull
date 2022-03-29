@@ -1,45 +1,54 @@
 package edu.byu.cs.tweeter.server.dao.concrete;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.ItemCollection;
+import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
+import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
+import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
+import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
+import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ReturnValue;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.net.request.FollowRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowingRequest;
+import edu.byu.cs.tweeter.model.net.request.IsFollowerRequest;
+import edu.byu.cs.tweeter.model.net.request.UnfollowRequest;
+import edu.byu.cs.tweeter.model.net.response.FollowResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowersCountResponse;
-import edu.byu.cs.tweeter.model.net.response.FollowersResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowingCountResponse;
-import edu.byu.cs.tweeter.model.net.response.FollowingResponse;
+import edu.byu.cs.tweeter.model.net.response.IsFollowerResponse;
+import edu.byu.cs.tweeter.model.net.response.UnfollowResponse;
 import edu.byu.cs.tweeter.server.dao.FollowDAO;
 import edu.byu.cs.tweeter.util.FakeData;
+import edu.byu.cs.tweeter.util.Pair;
 
 /**
  * A DAO for accessing 'following' data from the database.
  */
 public class DynamoFollowDAO implements FollowDAO {
-
-    /**
-     * Gets the count of users from the database that the user specified is following. The
-     * current implementation uses generated data and doesn't actually access a database.
-     *
-     * @param follower the User whose count of how many following is desired.
-     * @return said count.
-     */
-    public FollowingCountResponse getFolloweeCount(User follower) {
-        // TODO: uses the dummy data.  Replace with a real implementation.
-
-        return new FollowingCountResponse(getFollowCount(follower));
-    }
-
-    public FollowersCountResponse getFollowerCount(User followee) {
-        return new FollowersCountResponse(getFollowCount(followee));
-    }
-
-    private Integer getFollowCount(User user) {
-        // TODO: uses the dummy data.  Replace with a real implementation.
-        assert user != null;
-        return getDummyFollowees().size();
-    }
+    private final static String REGION = "us-west-2";
+    private static AmazonDynamoDB amazonDynamoDB = AmazonDynamoDBClientBuilder
+            .standard()
+            .withRegion(REGION)
+            .build();
+    private static DynamoDB dynamoDB = new DynamoDB(amazonDynamoDB);
+    Table followsTable = dynamoDB.getTable("follows");
 
     /**
      * Gets the users from the database that the user specified in the request is following. Uses
@@ -51,54 +60,80 @@ public class DynamoFollowDAO implements FollowDAO {
      *                other information required to satisfy the request.
      * @return the followees.
      */
-    public FollowingResponse getFollowees(FollowingRequest request) {
-        // TODO: Generates dummy data. Replace with a real implementation.
+    public Pair<List<String>, Boolean> getFollowees(FollowingRequest request) {
         assert request.getLimit() > 0;
         assert request.getFollowerAlias() != null;
 
-        List<User> allFollowees = getDummyFollowees();
-        List<User> responseFollowees = new ArrayList<>(request.getLimit());
+        boolean hasMoreItems = true;
+        List<String> followersAlias = new ArrayList<>();
+        HashMap<String, Object> valueMap = new HashMap<String, Object>();
+        valueMap.put(":follower", request.getFollowerAlias());
 
-        boolean hasMorePages = false;
-
-        if(request.getLimit() > 0) {
-            if (allFollowees != null) {
-                int followeesIndex = getFolloweesStartingIndex(request.getLastFolloweeAlias(), allFollowees);
-
-                for(int limitCounter = 0; followeesIndex < allFollowees.size() && limitCounter < request.getLimit(); followeesIndex++, limitCounter++) {
-                    responseFollowees.add(allFollowees.get(followeesIndex));
-                }
-
-                hasMorePages = followeesIndex < allFollowees.size();
+        ItemCollection<QueryOutcome> items;
+        Iterator<Item> iterator;
+        Item item;
+        QuerySpec querySpec;
+        try {
+            QueryOutcome outcome;
+            querySpec = new QuerySpec().withKeyConditionExpression("follower_handle = :follower")
+                    .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
+            items = followsTable.query(querySpec);
+            iterator = items.iterator();
+            while (iterator.hasNext()) {
+                item = iterator.next();
+                followersAlias.add(item.getString("followee_handle"));
             }
+
+            outcome = items.getLastLowLevelResult();
+            Map<String, AttributeValue> lastKey = outcome.getQueryResult().getLastEvaluatedKey();
+            if (lastKey == null) hasMoreItems = false;
+
+        } catch (Exception e) {
+            System.err.println("Unable to query");
+            System.err.println(e.getMessage());
         }
 
-        return new FollowingResponse(responseFollowees, hasMorePages);
+        return new Pair<List<String>, Boolean>(followersAlias, hasMoreItems);
     }
 
-    public FollowersResponse getFollowers(FollowersRequest request) {
-        // TODO: Generates dummy data. Replace with a real implementation.
+    public Pair<List<String>, Boolean> getFollowers(FollowersRequest request) {
         assert request.getLimit() > 0;
         assert request.getFollowingAlias() != null;
 
-        List<User> allFollowers = getDummyFollowees();
-        List<User> responseFollowers = new ArrayList<>(request.getLimit());
+        boolean hasMoreItems = true;
+        List<String> followeesAlias = new ArrayList<>();
 
-        boolean hasMorePages = false;
+        ItemCollection<QueryOutcome> items;
+        Iterator<Item> iterator;
+        Item item;
+        QuerySpec querySpec;
 
-        if(request.getLimit() > 0) {
-            if (allFollowers != null) {
-                int followeesIndex = getFolloweesStartingIndex(request.getLastFollowerAlias(), allFollowers);
+        HashMap<String, Object> valueMap = new HashMap<String, Object>();
+        valueMap.put(":followee", request.getFollowingAlias());
 
-                for(int limitCounter = 0; followeesIndex < allFollowers.size() && limitCounter < request.getLimit(); followeesIndex++, limitCounter++) {
-                    responseFollowers.add(allFollowers.get(followeesIndex));
-                }
+        try {
+            QueryOutcome outcome;
+            querySpec = new QuerySpec().withKeyConditionExpression("followee_handle = :followee")
+                    .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
 
-                hasMorePages = followeesIndex < allFollowers.size();
+            items = followsTable.getIndex("follows_index").query(querySpec);
+            iterator = items.iterator();
+            while (iterator.hasNext()) {
+                item = iterator.next();
+                followeesAlias.add(item.getString("follower_handle"));
             }
+
+            outcome = items.getLastLowLevelResult();
+            Map<String, AttributeValue> lastKey = outcome.getQueryResult().getLastEvaluatedKey();
+            if (lastKey == null) hasMoreItems = false;
+
+        }
+        catch (Exception e) {
+            System.err.println("Unable to query");
+            System.err.println(e.getMessage());
         }
 
-        return new FollowersResponse(responseFollowers, hasMorePages);
+        return new Pair<List<String>, Boolean>(followeesAlias, hasMoreItems);
     }
 
     /**
@@ -129,6 +164,84 @@ public class DynamoFollowDAO implements FollowDAO {
         }
 
         return followeesIndex;
+    }
+
+    @Override
+    public FollowResponse follow(FollowRequest request, User currentUser) {
+
+        try {
+            System.out.println("Adding a new item...");
+            PutItemOutcome outcome = followsTable
+                    .putItem(new Item().withPrimaryKey("follower_handle", currentUser.getAlias(), "followee_handle", request.getFollowee().getAlias())
+                            .withString("follower_handleName", currentUser.getFirstName() + " " + currentUser.getLastName())
+                            .withString("followee_handleName", request.getFollowee().getFirstName() + " " + request.getFollowee().getLastName()));
+            System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+            return new FollowResponse(e.getMessage());
+        }
+        return new FollowResponse();
+    }
+
+    @Override
+    public UnfollowResponse unfollow(UnfollowRequest request, User currentUser) {
+        DeleteItemSpec deleteItemSpec = new DeleteItemSpec()
+                .withPrimaryKey(new PrimaryKey("follower_handle", currentUser.getAlias(), "followee_handle", request.getFollowee().getAlias()));
+
+        try {
+            System.out.println("Attempting a conditional delete...");
+            followsTable.deleteItem(deleteItemSpec);
+            System.out.println("DeleteItem succeeded");
+        }
+        catch (Exception e) {
+            System.err.println("Unable to delete item: " + request.getFollowee());
+            System.err.println(e.getMessage());
+            return new UnfollowResponse(e.getMessage());
+        }
+        return new UnfollowResponse();
+    }
+
+    @Override
+    public IsFollowerResponse isFollower(IsFollowerRequest request) {
+        assert request.getFollowee() != null;
+        assert request.getFollower() != null;
+
+        boolean isFollower = false;
+        System.out.println("IS_FOLLOW TOKEN: " + request.getAuthToken().token);
+
+        ItemCollection<QueryOutcome> items;
+        Iterator<Item> iterator;
+        Item item;
+        QuerySpec querySpec;
+
+        HashMap<String, Object> valueMap = new HashMap<String, Object>();
+        valueMap.put(":follower", request.getFollower().getAlias());
+
+        try {
+            querySpec = new QuerySpec().withKeyConditionExpression("follower_handle = :follower")
+                    .withValueMap(valueMap).withScanIndexForward(true);
+
+            items = followsTable.query(querySpec);
+            iterator = items.iterator();
+            while (iterator.hasNext()) {
+                item = iterator.next();
+                String followee = item.getString("followee_handle");
+                System.out.println("user: " + request.getFollowee().getAlias());
+                if (followee.equals(request.getFollowee().getAlias())) {
+                    System.out.println("Found followed user");
+                    isFollower = true;
+                    System.out.println("isFollower = " + isFollower);
+                    break;
+                }
+            }
+        }
+        catch (Exception e) {
+            System.err.println("Unable to query");
+            System.err.println(e.getMessage());
+        }
+        System.out.println("isFollower = " + isFollower);
+        return new IsFollowerResponse(isFollower);
     }
 
     /**

@@ -8,9 +8,10 @@ public class RegisterResponse extends Response {
     User user;
     AuthToken authToken = new AuthToken();
 
-    public RegisterResponse(String firstName, String lastName, String username, String password, String image) {
+    public RegisterResponse(String firstName, String lastName, String username, String password, String image, AuthToken authToken) {
         super(true);
         this.user = new User(firstName, lastName, username, password, image);
+        this.authToken = authToken;
     }
 
     public User getUser() {

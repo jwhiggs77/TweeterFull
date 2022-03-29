@@ -7,7 +7,6 @@ import android.util.Log;
 
 import edu.byu.cs.tweeter.client.model.net.ServerFacade;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.util.FakeData;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -37,7 +36,6 @@ public abstract class BackgroundTask implements Runnable {
     public void run() {
         try {
             processTask();
-            sendSuccessMessage();
         } catch (Exception ex) {
             Log.e(LOG_TAG, ex.getMessage(), ex);
             sendExceptionMessage(ex);
@@ -73,9 +71,9 @@ public abstract class BackgroundTask implements Runnable {
         return msgBundle;
     }
 
-    protected FakeData getFakeData() {
-        return new FakeData();
-    }
+//    protected FakeData getFakeData() {
+//        return new FakeData();
+//    }
 
     public ServerFacade getServerFacade() {
         return new ServerFacade();

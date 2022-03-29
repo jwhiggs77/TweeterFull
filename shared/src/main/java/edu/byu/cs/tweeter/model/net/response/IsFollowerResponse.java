@@ -14,7 +14,11 @@ public class IsFollowerResponse extends Response {
         super(false, message);
     }
 
-    public boolean isFollower() {
+    public boolean getIsFollower() {
         return isFollower;
+    }
+
+    public void setIsFollower(boolean follower) {
+        isFollower = follower;
     }
 }

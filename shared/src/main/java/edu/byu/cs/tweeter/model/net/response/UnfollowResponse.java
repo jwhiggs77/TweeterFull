@@ -6,7 +6,7 @@ public class UnfollowResponse extends Response {
         super(true);
     }
 
-    UnfollowResponse(String message) {
+    public UnfollowResponse(String message) {
         super(false, message);
     }
 }

@@ -1,21 +1,25 @@
 package edu.byu.cs.tweeter.server.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.net.request.FollowRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowingRequest;
+import edu.byu.cs.tweeter.model.net.request.IsFollowerRequest;
+import edu.byu.cs.tweeter.model.net.request.UnfollowRequest;
+import edu.byu.cs.tweeter.model.net.response.FollowResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowersCountResponse;
-import edu.byu.cs.tweeter.model.net.response.FollowersResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowingCountResponse;
-import edu.byu.cs.tweeter.model.net.response.FollowingResponse;
+import edu.byu.cs.tweeter.model.net.response.IsFollowerResponse;
+import edu.byu.cs.tweeter.model.net.response.UnfollowResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
 public interface FollowDAO {
 
-    FollowingCountResponse getFolloweeCount(User follower);
-
-    FollowersCountResponse getFollowerCount(User followee);
+//    FollowingCountResponse getFolloweeCount(User follower);
+//
+//    FollowersCountResponse getFollowerCount(User followee);
 
     private Integer getFollowCount(User user) {
         // TODO: uses the dummy data.  Replace with a real implementation.
@@ -33,9 +37,9 @@ public interface FollowDAO {
      *                other information required to satisfy the request.
      * @return the followees.
      */
-    public FollowingResponse getFollowees(FollowingRequest request);
+    Pair<List<String>, Boolean> getFollowees(FollowingRequest request);
 
-    public FollowersResponse getFollowers(FollowersRequest request);
+    Pair<List<String>, Boolean> getFollowers(FollowersRequest request);
 
     /**
      * Determines the index for the first followee in the specified 'allFollowees' list that should
@@ -50,4 +54,10 @@ public interface FollowDAO {
     private int getFolloweesStartingIndex(String lastFolloweeAlias, List<User> allFollowees) {
         return 0;
     }
+
+    FollowResponse follow(FollowRequest request, User currentUser);
+
+    UnfollowResponse unfollow(UnfollowRequest request, User currentUser);
+
+    IsFollowerResponse isFollower(IsFollowerRequest request);
 }

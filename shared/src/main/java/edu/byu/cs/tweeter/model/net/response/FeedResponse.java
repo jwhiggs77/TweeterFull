@@ -19,4 +19,8 @@ public class FeedResponse extends PagedResponse {
     public List<Status> getFeed() {
         return feed;
     }
+
+    public void setFeed(List<Status> feed) {
+        this.feed = feed;
+    }
 }

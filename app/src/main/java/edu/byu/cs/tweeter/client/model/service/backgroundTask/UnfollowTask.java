@@ -29,7 +29,7 @@ public class UnfollowTask extends AuthenticatedTask {
 
     @Override
     protected boolean processTask() throws IOException, TweeterRemoteException {
-        UnfollowRequest request = new UnfollowRequest(followee);
+        UnfollowRequest request = new UnfollowRequest(followee, getAuthToken());
         UnfollowResponse response = getServerFacade().unfollow(request, URL_PATH);
         return response.isSuccess();
     }

@@ -19,5 +19,7 @@ public class FollowersResponse extends PagedResponse {
         return followers;
     }
 
-
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
 }

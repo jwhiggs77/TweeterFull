@@ -7,9 +7,9 @@ import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.net.request.IsFollowerRequest;
 import edu.byu.cs.tweeter.model.net.response.IsFollowerResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * Background task that determines if one user is following another.
@@ -36,12 +36,12 @@ public class IsFollowerTask extends AuthenticatedTask {
     }
 
     @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
         IsFollowerRequest request = new IsFollowerRequest(getAuthToken(), follower, followee);
         IsFollowerResponse response = getServerFacade().isFollower(request, URL_PATH);
         isFollower = response.getIsFollower();
         System.out.println("IS_FOLLOWER: " + response.getIsFollower());
-        return response.isSuccess();
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 
     @Override

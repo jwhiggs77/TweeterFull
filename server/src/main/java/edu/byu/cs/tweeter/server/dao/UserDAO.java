@@ -1,9 +1,13 @@
 package edu.byu.cs.tweeter.server.dao;
 
+import java.util.List;
+
+import edu.byu.cs.tweeter.DTO.PostStatusDTO;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.request.LoginRequest;
 import edu.byu.cs.tweeter.model.net.request.LogoutRequest;
+import edu.byu.cs.tweeter.model.net.request.PostStatusRequest;
 import edu.byu.cs.tweeter.model.net.request.RegisterRequest;
 import edu.byu.cs.tweeter.model.net.request.UserRequest;
 import edu.byu.cs.tweeter.model.net.response.FollowersCountResponse;
@@ -30,4 +34,6 @@ public interface UserDAO {
     FollowingCountResponse getFolloweeCount(User targetUser);
 
     LogoutResponse logout(LogoutRequest request);
+
+    void addUserBatch(List<User> postStatus);
 }

@@ -10,7 +10,6 @@ import edu.byu.cs.tweeter.model.net.response.StoryResponse;
 import edu.byu.cs.tweeter.util.Pair;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Background task that retrieves a page of statuses from a user's story.
@@ -24,9 +23,11 @@ public class GetStoryTask extends PagedTask<Status> {
     }
 
     @Override
-    protected Pair<List<Status>, Boolean> getItems() throws IOException, TweeterRemoteException {
+    protected Pair<Boolean, String> getItems() throws IOException, TweeterRemoteException {
         StoryRequest request = new StoryRequest(getAuthToken(), getTargetUser(), getLimit(), getLastItem());
         StoryResponse response = getServerFacade().getStory(request, URL_PATH);
-        return new Pair<>(response.getStory(), response.isSuccess());
+        setItems(response.getStory());
+        setHasMorePages(response.getHasMorePages());
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 }

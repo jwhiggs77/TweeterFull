@@ -2,6 +2,7 @@ package edu.byu.cs.tweeter.server.dao.concrete;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.BatchWriteItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
@@ -9,6 +10,7 @@ import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.TableWriteItems;
 import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
@@ -16,6 +18,7 @@ import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
+import com.amazonaws.services.dynamodbv2.model.WriteRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,11 +75,16 @@ public class DynamoFollowDAO implements FollowDAO {
         ItemCollection<QueryOutcome> items;
         Iterator<Item> iterator;
         Item item;
-        QuerySpec querySpec;
+        QuerySpec querySpec = new QuerySpec().withKeyConditionExpression("follower_handle = :follower")
+                .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
+
+        if (request.getLastFolloweeAlias() != null) {
+            PrimaryKey primaryKey = new PrimaryKey("follower_handle", request.getFollowerAlias(), "followee_handle", request.getLastFolloweeAlias());
+            querySpec.withExclusiveStartKey(primaryKey);
+        }
+
         try {
             QueryOutcome outcome;
-            querySpec = new QuerySpec().withKeyConditionExpression("follower_handle = :follower")
-                    .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
             items = followsTable.query(querySpec);
             iterator = items.iterator();
             while (iterator.hasNext()) {
@@ -110,11 +118,18 @@ public class DynamoFollowDAO implements FollowDAO {
 
         HashMap<String, Object> valueMap = new HashMap<String, Object>();
         valueMap.put(":followee", request.getFollowingAlias());
+        querySpec = new QuerySpec().withKeyConditionExpression("followee_handle = :followee")
+                .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
+
+        if (request.getLastFollowerAlias() != null) {
+            PrimaryKey primaryKey = new PrimaryKey("follower_handle", request.getLastFollowerAlias(), "followee_handle", request.getFollowingAlias());
+            querySpec.withExclusiveStartKey(primaryKey);
+        }
 
         try {
             QueryOutcome outcome;
-            querySpec = new QuerySpec().withKeyConditionExpression("followee_handle = :followee")
-                    .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
+//            querySpec = new QuerySpec().withKeyConditionExpression("followee_handle = :followee")
+//                    .withValueMap(valueMap).withScanIndexForward(true).withMaxResultSize(request.getLimit());
 
             items = followsTable.getIndex("follows_index").query(querySpec);
             iterator = items.iterator();
@@ -170,12 +185,12 @@ public class DynamoFollowDAO implements FollowDAO {
     public FollowResponse follow(FollowRequest request, User currentUser) {
 
         try {
-            System.out.println("Adding a new item...");
+//            System.out.println("Adding a new item...");
             PutItemOutcome outcome = followsTable
                     .putItem(new Item().withPrimaryKey("follower_handle", currentUser.getAlias(), "followee_handle", request.getFollowee().getAlias())
                             .withString("follower_handleName", currentUser.getFirstName() + " " + currentUser.getLastName())
                             .withString("followee_handleName", request.getFollowee().getFirstName() + " " + request.getFollowee().getLastName()));
-            System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
+//            System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
@@ -190,9 +205,9 @@ public class DynamoFollowDAO implements FollowDAO {
                 .withPrimaryKey(new PrimaryKey("follower_handle", currentUser.getAlias(), "followee_handle", request.getFollowee().getAlias()));
 
         try {
-            System.out.println("Attempting a conditional delete...");
+//            System.out.println("Attempting a conditional delete...");
             followsTable.deleteItem(deleteItemSpec);
-            System.out.println("DeleteItem succeeded");
+//            System.out.println("DeleteItem succeeded");
         }
         catch (Exception e) {
             System.err.println("Unable to delete item: " + request.getFollowee());
@@ -208,7 +223,6 @@ public class DynamoFollowDAO implements FollowDAO {
         assert request.getFollower() != null;
 
         boolean isFollower = false;
-        System.out.println("IS_FOLLOW TOKEN: " + request.getAuthToken().token);
 
         ItemCollection<QueryOutcome> items;
         Iterator<Item> iterator;
@@ -227,11 +241,11 @@ public class DynamoFollowDAO implements FollowDAO {
             while (iterator.hasNext()) {
                 item = iterator.next();
                 String followee = item.getString("followee_handle");
-                System.out.println("user: " + request.getFollowee().getAlias());
+//                System.out.println("user: " + request.getFollowee().getAlias());
                 if (followee.equals(request.getFollowee().getAlias())) {
                     System.out.println("Found followed user");
                     isFollower = true;
-                    System.out.println("isFollower = " + isFollower);
+//                    System.out.println("isFollower = " + isFollower);
                     break;
                 }
             }
@@ -244,23 +258,48 @@ public class DynamoFollowDAO implements FollowDAO {
         return new IsFollowerResponse(isFollower);
     }
 
-    /**
-     * Returns the list of dummy followee data. This is written as a separate method to allow
-     * mocking of the followees.
-     *
-     * @return the followees.
-     */
-    List<User> getDummyFollowees() {
-        return getFakeData().getFakeUsers();
+
+    public void addFollowBatch(List<List<String>> list) {
+
+        // Constructor for TableWriteItems takes the name of the table, which I have stored in TABLE_USER
+        TableWriteItems items = new TableWriteItems(followsTable.getTableName());
+
+        // Add each user into the TableWriteItems object
+        for (List<String> strings : list) {
+            Item item = new Item()
+                    .withPrimaryKey("follower_handle", strings.get(0))
+                    .withString("followee_handle", strings.get(1))
+                    .withString("follower_name", strings.get(2))
+                    .withString("followee_name", strings.get(3));
+            items.addItemToPut(item);
+
+            // 25 is the maximum number of items allowed in a single batch write.
+            // Attempting to write more than 25 items will result in an exception being thrown
+            if (items.getItemsToPut() != null && items.getItemsToPut().size() == 25) {
+                loopBatchWrite(items);
+                items = new TableWriteItems(followsTable.getTableName());
+            }
+        }
+
+        // Write any leftover items
+        if (items.getItemsToPut() != null && items.getItemsToPut().size() > 0) {
+            loopBatchWrite(items);
+        }
     }
 
-    /**
-     * Returns the {@link FakeData} object used to generate dummy followees.
-     * This is written as a separate method to allow mocking of the {@link FakeData}.
-     *
-     * @return a {@link FakeData} instance.
-     */
-    FakeData getFakeData() {
-        return new FakeData();
+    private void loopBatchWrite(TableWriteItems items) {
+
+        // The 'dynamoDB' object is of type DynamoDB and is declared statically in this example
+        BatchWriteItemOutcome outcome = dynamoDB.batchWriteItem(items);
+        System.out.println(outcome);
+//        logger.log("Wrote User Batch");
+
+        // Check the outcome for items that didn't make it onto the table
+        // If any were not added to the table, try again to write the batch
+        while (outcome.getUnprocessedItems().size() > 0) {
+            Map<String, List<WriteRequest>> unprocessedItems = outcome.getUnprocessedItems();
+            outcome = dynamoDB.batchWriteItemUnprocessed(unprocessedItems);
+            System.out.println(outcome);
+        }
     }
 }

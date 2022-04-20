@@ -10,6 +10,7 @@ import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.net.request.UserRequest;
 import edu.byu.cs.tweeter.model.net.response.UserResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
 /**
  * Background task that returns the profile for a specified user.
@@ -30,12 +31,12 @@ public class GetUserTask extends AuthenticatedTask {
     }
 
     @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
-        // TODO: This is empty only cuz we're using dummy data
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
         UserRequest request = new UserRequest(alias);
         UserResponse response = getServerFacade().getUser(request, URL_PATH);
+
         returnedUser = response.getUser();
-        return response.isSuccess();
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 
     @Override

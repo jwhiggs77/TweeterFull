@@ -7,6 +7,7 @@ import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.net.request.FollowersCountRequest;
 import edu.byu.cs.tweeter.model.net.response.FollowersCountResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
 /**
  * Background task that queries how many followers a user has.
@@ -19,9 +20,10 @@ public class GetFollowersCountTask extends GetCountTask {
     }
 
     @Override
-    protected int getCount() throws IOException, TweeterRemoteException {
+    protected Pair<Boolean, String> getCount() throws IOException, TweeterRemoteException {
         FollowersCountRequest request = new FollowersCountRequest(getAuthToken(), getTargetUser());
         FollowersCountResponse response = getServerFacade().getFollowersCount(request, URL_PATH);
-        return response.getCount();
+        setCount(response.getCount());
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 }

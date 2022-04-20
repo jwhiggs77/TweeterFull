@@ -1,6 +1,7 @@
 package edu.byu.cs.tweeter.model.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Represents an auth token in the system.
@@ -20,6 +21,7 @@ public class AuthToken implements Serializable {
 
     public AuthToken(String token) {
         this.token = token;
+        this.datetime = String.valueOf(LocalDateTime.now());
     }
 
     public AuthToken(String token, String datetime) {

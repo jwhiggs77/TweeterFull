@@ -8,6 +8,7 @@ import java.io.IOException;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
+import edu.byu.cs.tweeter.model.net.response.RegisterResponse;
 import edu.byu.cs.tweeter.util.Pair;
 
 public abstract class AuthenticateTask extends BackgroundTask {
@@ -33,7 +34,16 @@ public abstract class AuthenticateTask extends BackgroundTask {
     }
 
     private User currentUser;
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
     private AuthToken authToken;
+
+    public void setAuthToken(AuthToken authToken) {
+        this.authToken = authToken;
+    }
 
     public AuthenticateTask(Handler messageHandler, String username, String password) {
         super(messageHandler);
@@ -41,14 +51,20 @@ public abstract class AuthenticateTask extends BackgroundTask {
         this.password = password;
     }
 
-    protected abstract Pair<User, AuthToken> doLogin() throws IOException, TweeterRemoteException;
+    protected abstract Pair<Boolean, String> doLogin() throws IOException, TweeterRemoteException;
 
     @Override
     protected boolean processTask() throws IOException, TweeterRemoteException {
-        Pair<User, AuthToken> loginResult = doLogin();
-        currentUser = loginResult.getFirst();
-        authToken = loginResult.getSecond();
-//        sendSuccessMessage();
+        Pair<Boolean, String> response = doLogin();
+
+        if (response.getFirst()) {
+            sendSuccessMessage();
+        }
+        else {
+            sendFailedMessage(response.getSecond());
+        }
+
+
         return true;
     }
 

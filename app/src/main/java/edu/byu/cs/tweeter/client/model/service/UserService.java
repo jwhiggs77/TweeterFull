@@ -17,14 +17,13 @@ public class UserService {
 
     public void login(String alias, String password, AuthenticateObserver loginObserver) {
         LoginTask loginTask = new LoginTask(alias,
-                password,
-                new AuthenticateHandler(loginObserver));
+                password, new LoginHandler(loginObserver));
         BackgroundTaskUtils.runTask(loginTask);
     }
 
     public void register(String firstName, String lastName, String alias, String password, String imageBytesBase64, AuthenticateObserver registerObserver) {
         RegisterTask registerTask = new RegisterTask(firstName, lastName,
-                alias, password, imageBytesBase64, new AuthenticateHandler(registerObserver));
+                alias, password, imageBytesBase64, new RegisterHandler(registerObserver));
         BackgroundTaskUtils.runTask(registerTask);
     }
 

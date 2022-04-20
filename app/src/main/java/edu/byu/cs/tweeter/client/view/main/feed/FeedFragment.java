@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Implements the "Feed" tab.
@@ -327,7 +328,7 @@ public class FeedFragment extends Fragment implements FeedPresenter.View {
          * loading footer view) at the bottom of the list.
          */
         private void addLoadingFooter() {
-            addItem(new Status("Dummy Post", new User("firstName", "lastName", "@coolAlias"), "2020-10-31 00:00:00", new ArrayList<String>() {{
+            addItem(new Status("Dummy Post", new User("firstName", "lastName", "@coolAlias", ""), "2020-10-31 00:00:00", new ArrayList<String>() {{
                 add("https://youtube.com");
             }}, new ArrayList<String>() {{
                 add("@Dude1");
@@ -339,7 +340,9 @@ public class FeedFragment extends Fragment implements FeedPresenter.View {
          * the loading footer at the bottom of the list.
          */
         private void removeLoadingFooter() {
-            removeItem(feed.get(feed.size() - 1));
+
+            System.out.println(String.format("APP CRASH: %d", feed.size()));
+            if (feed.size() > 0) removeItem(feed.get(feed.size() - 1));
         }
 
 

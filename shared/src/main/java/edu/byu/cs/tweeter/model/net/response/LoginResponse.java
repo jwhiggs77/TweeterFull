@@ -39,7 +39,7 @@ public class LoginResponse extends Response {
      * @return the user.
      */
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     /**
@@ -48,6 +48,14 @@ public class LoginResponse extends Response {
      * @return the auth token.
      */
     public AuthToken getAuthToken() {
-        return authToken;
+        return this.authToken;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setAuthToken(AuthToken authToken) {
+        this.authToken = authToken;
     }
 }

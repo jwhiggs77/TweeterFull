@@ -1,0 +1,85 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="edu.byu.cs.tweeter"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="30"
+8-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:5:5-67
+11-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:6:5-80
+12-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:6:22-77
+13
+14    <application
+14-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:8:5-27:19
+15        android:allowBackup="true"
+15-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:9:9-35
+16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+16-->[androidx.core:core:1.0.1] /Users/joshuahiggins/.gradle/caches/transforms-3/71f9b9ce7f39fb01fae32c198bf5b58d/transformed/core-1.0.1/AndroidManifest.xml:22:18-86
+17        android:debuggable="true"
+18        android:extractNativeLibs="false"
+19        android:icon="@mipmap/ic_launcher"
+19-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:10:9-43
+20        android:label="@string/app_name"
+20-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:11:9-41
+21        android:roundIcon="@mipmap/ic_launcher_round"
+21-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:12:9-54
+22        android:supportsRtl="true"
+22-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:13:9-35
+23        android:testOnly="true"
+24        android:theme="@style/AppTheme" >
+24-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:14:9-40
+25        <activity
+25-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:15:9-23:20
+26            android:name="edu.byu.cs.tweeter.client.view.login.LoginActivity"
+26-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:16:13-78
+27            android:label="@string/title_activity_login"
+27-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:17:13-57
+28            android:theme="@style/AppTheme.NoActionBar" >
+28-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:18:13-56
+29            <intent-filter>
+29-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:19:13-22:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:20:17-69
+30-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:20:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:21:17-77
+32-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:21:27-74
+33            </intent-filter>
+34        </activity>
+35        <activity
+35-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:24:9-26:68
+36            android:name="edu.byu.cs.tweeter.client.view.main.MainActivity"
+36-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:25:13-76
+37            android:label="@string/title_activity_main" />
+37-->/Users/joshuahiggins/Desktop/Joshua’s MacBook/CS 340/tweeterFull/app/src/main/AndroidManifest.xml:26:13-56
+38
+39        <provider
+39-->[com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
+40            android:name="com.squareup.picasso.PicassoProvider"
+40-->[com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64
+41            android:authorities="edu.byu.cs.tweeter.com.squareup.picasso"
+41-->[com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
+42            android:exported="false" />
+42-->[com.squareup.picasso:picasso:2.71828] /Users/joshuahiggins/.gradle/caches/transforms-3/49aed2a2361a462a3ea77e0ced580dc0/transformed/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
+43        <provider
+43-->[androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
+44            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+44-->[androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79
+45            android:authorities="edu.byu.cs.tweeter.lifecycle-process"
+45-->[androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
+46            android:exported="false"
+46-->[androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
+47            android:multiprocess="true" />
+47-->[androidx.lifecycle:lifecycle-process:2.0.0] /Users/joshuahiggins/.gradle/caches/transforms-3/1d3647765e038f5df190d51c1d19a36a/transformed/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
+48    </application>
+49
+50</manifest>

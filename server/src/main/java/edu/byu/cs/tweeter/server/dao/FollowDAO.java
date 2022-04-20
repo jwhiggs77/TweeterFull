@@ -1,43 +1,30 @@
 package edu.byu.cs.tweeter.server.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.net.request.FollowRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowingRequest;
+import edu.byu.cs.tweeter.model.net.request.IsFollowerRequest;
+import edu.byu.cs.tweeter.model.net.request.UnfollowRequest;
+import edu.byu.cs.tweeter.model.net.response.FollowResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowersCountResponse;
-import edu.byu.cs.tweeter.model.net.response.FollowersResponse;
 import edu.byu.cs.tweeter.model.net.response.FollowingCountResponse;
-import edu.byu.cs.tweeter.model.net.response.FollowingResponse;
-import edu.byu.cs.tweeter.util.FakeData;
+import edu.byu.cs.tweeter.model.net.response.IsFollowerResponse;
+import edu.byu.cs.tweeter.model.net.response.UnfollowResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
-/**
- * A DAO for accessing 'following' data from the database.
- */
-public class FollowDAO {
+public interface FollowDAO {
 
-    /**
-     * Gets the count of users from the database that the user specified is following. The
-     * current implementation uses generated data and doesn't actually access a database.
-     *
-     * @param follower the User whose count of how many following is desired.
-     * @return said count.
-     */
-    public FollowingCountResponse getFolloweeCount(User follower) {
-        // TODO: uses the dummy data.  Replace with a real implementation.
-
-        return new FollowingCountResponse(getFollowCount(follower));
-    }
-
-    public FollowersCountResponse getFollowerCount(User followee) {
-        return new FollowersCountResponse(getFollowCount(followee));
-    }
+//    FollowingCountResponse getFolloweeCount(User follower);
+//
+//    FollowersCountResponse getFollowerCount(User followee);
 
     private Integer getFollowCount(User user) {
         // TODO: uses the dummy data.  Replace with a real implementation.
         assert user != null;
-        return getDummyFollowees().size();
+        return 0;
     }
 
     /**
@@ -50,55 +37,9 @@ public class FollowDAO {
      *                other information required to satisfy the request.
      * @return the followees.
      */
-    public FollowingResponse getFollowees(FollowingRequest request) {
-        // TODO: Generates dummy data. Replace with a real implementation.
-        assert request.getLimit() > 0;
-        assert request.getFollowerAlias() != null;
+    Pair<List<String>, Boolean> getFollowees(FollowingRequest request);
 
-        List<User> allFollowees = getDummyFollowees();
-        List<User> responseFollowees = new ArrayList<>(request.getLimit());
-
-        boolean hasMorePages = false;
-
-        if(request.getLimit() > 0) {
-            if (allFollowees != null) {
-                int followeesIndex = getFolloweesStartingIndex(request.getLastFolloweeAlias(), allFollowees);
-
-                for(int limitCounter = 0; followeesIndex < allFollowees.size() && limitCounter < request.getLimit(); followeesIndex++, limitCounter++) {
-                    responseFollowees.add(allFollowees.get(followeesIndex));
-                }
-
-                hasMorePages = followeesIndex < allFollowees.size();
-            }
-        }
-
-        return new FollowingResponse(responseFollowees, hasMorePages);
-    }
-
-    public FollowersResponse getFollowers(FollowersRequest request) {
-        // TODO: Generates dummy data. Replace with a real implementation.
-        assert request.getLimit() > 0;
-        assert request.getFollowingAlias() != null;
-
-        List<User> allFollowers = getDummyFollowees();
-        List<User> responseFollowers = new ArrayList<>(request.getLimit());
-
-        boolean hasMorePages = false;
-
-        if(request.getLimit() > 0) {
-            if (allFollowers != null) {
-                int followeesIndex = getFolloweesStartingIndex(request.getLastFollowerAlias(), allFollowers);
-
-                for(int limitCounter = 0; followeesIndex < allFollowers.size() && limitCounter < request.getLimit(); followeesIndex++, limitCounter++) {
-                    responseFollowers.add(allFollowers.get(followeesIndex));
-                }
-
-                hasMorePages = followeesIndex < allFollowers.size();
-            }
-        }
-
-        return new FollowersResponse(responseFollowers, hasMorePages);
-    }
+    Pair<List<String>, Boolean> getFollowers(FollowersRequest request);
 
     /**
      * Determines the index for the first followee in the specified 'allFollowees' list that should
@@ -107,46 +48,16 @@ public class FollowDAO {
      *
      * @param lastFolloweeAlias the alias of the last followee that was returned in the previous
      *                          request or null if there was no previous request.
-     * @param allFollowees the generated list of followees from which we are returning paged results.
+     * @param allFollowees      the generated list of followees from which we are returning paged results.
      * @return the index of the first followee to be returned.
      */
     private int getFolloweesStartingIndex(String lastFolloweeAlias, List<User> allFollowees) {
-
-        int followeesIndex = 0;
-
-        if(lastFolloweeAlias != null) {
-            // This is a paged request for something after the first page. Find the first item
-            // we should return
-            for (int i = 0; i < allFollowees.size(); i++) {
-                if(lastFolloweeAlias.equals(allFollowees.get(i).getAlias())) {
-                    // We found the index of the last item returned last time. Increment to get
-                    // to the first one we should return
-                    followeesIndex = i + 1;
-                    break;
-                }
-            }
-        }
-
-        return followeesIndex;
+        return 0;
     }
 
-    /**
-     * Returns the list of dummy followee data. This is written as a separate method to allow
-     * mocking of the followees.
-     *
-     * @return the followees.
-     */
-    List<User> getDummyFollowees() {
-        return getFakeData().getFakeUsers();
-    }
+    FollowResponse follow(FollowRequest request, User currentUser);
 
-    /**
-     * Returns the {@link FakeData} object used to generate dummy followees.
-     * This is written as a separate method to allow mocking of the {@link FakeData}.
-     *
-     * @return a {@link FakeData} instance.
-     */
-    FakeData getFakeData() {
-        return new FakeData();
-    }
+    UnfollowResponse unfollow(UnfollowRequest request, User currentUser);
+
+    IsFollowerResponse isFollower(IsFollowerRequest request);
 }

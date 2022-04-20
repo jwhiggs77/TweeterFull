@@ -100,11 +100,6 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
         followingRecyclerViewAdapter.addItems(items);
     }
 
-//    @Override
-//    public void addFollowList(List<User> followees) {
-//        followingRecyclerViewAdapter.addItems(followees);
-//    }
-
     @Override
     public void startActivity(User user) {
         Intent intent = new Intent(getContext(), MainActivity.class);
@@ -269,7 +264,7 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
          * loading footer view) at the bottom of the list.
          */
         private void addLoadingFooter() {
-            addItem(new User("Dummy", "User", ""));
+            addItem(new User("Dummy", "User", "", ""));
         }
 
         /**
@@ -277,7 +272,7 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
          * the loading footer at the bottom of the list.
          */
         private void removeLoadingFooter() {
-            removeItem(users.get(users.size() - 1));
+            if (users.size() > 0) removeItem(users.get(users.size() - 1));
         }
 
     }

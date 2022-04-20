@@ -60,6 +60,10 @@ public class FollowingResponse extends PagedResponse {
                 this.isSuccess() == that.isSuccess());
     }
 
+    public void setFollowees(List<User> followees) {
+        this.followees = followees;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(followees);

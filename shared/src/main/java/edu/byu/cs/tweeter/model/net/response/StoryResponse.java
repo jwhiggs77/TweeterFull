@@ -16,6 +16,10 @@ public class StoryResponse extends PagedResponse {
         super(success, message, hasMorePages);
     }
 
+    public void setStory(List<Status> story) {
+        this.story = story;
+    }
+
     public List<Status> getStory() {
         return story;
     }

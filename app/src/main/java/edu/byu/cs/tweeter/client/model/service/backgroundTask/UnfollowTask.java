@@ -10,6 +10,7 @@ import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.net.request.UnfollowRequest;
 import edu.byu.cs.tweeter.model.net.response.UnfollowResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
 /**
  * Background task that removes a following relationship between two users.
@@ -28,10 +29,10 @@ public class UnfollowTask extends AuthenticatedTask {
     }
 
     @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
         UnfollowRequest request = new UnfollowRequest(followee, getAuthToken());
         UnfollowResponse response = getServerFacade().unfollow(request, URL_PATH);
-        return response.isSuccess();
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 
     @Override

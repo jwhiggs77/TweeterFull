@@ -8,7 +8,6 @@ import java.io.IOException;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.model.net.response.RegisterResponse;
 import edu.byu.cs.tweeter.util.Pair;
 
 public abstract class AuthenticateTask extends BackgroundTask {
@@ -54,18 +53,8 @@ public abstract class AuthenticateTask extends BackgroundTask {
     protected abstract Pair<Boolean, String> doLogin() throws IOException, TweeterRemoteException;
 
     @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
-        Pair<Boolean, String> response = doLogin();
-
-        if (response.getFirst()) {
-            sendSuccessMessage();
-        }
-        else {
-            sendFailedMessage(response.getSecond());
-        }
-
-
-        return true;
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
+        return doLogin();
     }
 
     @Override

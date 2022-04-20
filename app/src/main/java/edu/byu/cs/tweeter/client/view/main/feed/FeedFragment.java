@@ -340,8 +340,6 @@ public class FeedFragment extends Fragment implements FeedPresenter.View {
          * the loading footer at the bottom of the list.
          */
         private void removeLoadingFooter() {
-
-            System.out.println(String.format("APP CRASH: %d", feed.size()));
             if (feed.size() > 0) removeItem(feed.get(feed.size() - 1));
         }
 

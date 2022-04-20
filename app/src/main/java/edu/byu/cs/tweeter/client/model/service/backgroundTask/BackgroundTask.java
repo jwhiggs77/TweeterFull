@@ -7,6 +7,8 @@ import android.util.Log;
 
 import edu.byu.cs.tweeter.client.model.net.ServerFacade;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
+import edu.byu.cs.tweeter.util.Pair;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -35,14 +37,21 @@ public abstract class BackgroundTask implements Runnable {
     @Override
     public void run() {
         try {
-            processTask();
+            Pair<Boolean, String> response = processTask();
+            if (response.getFirst()) {
+                sendSuccessMessage();
+            }
+            else {
+                sendFailedMessage(response.getSecond());
+            }
+
         } catch (Exception ex) {
             Log.e(LOG_TAG, ex.getMessage(), ex);
             sendExceptionMessage(ex);
         }
     }
 
-    protected abstract boolean processTask() throws IOException, TweeterRemoteException;
+    protected abstract Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException;
 
     protected abstract void loadSuccessBundle(Bundle msgBundle) throws IOException, TweeterRemoteException;
 
@@ -70,10 +79,6 @@ public abstract class BackgroundTask implements Runnable {
         msgBundle.putBoolean(SUCCESS_KEY, value);
         return msgBundle;
     }
-
-//    protected FakeData getFakeData() {
-//        return new FakeData();
-//    }
 
     public ServerFacade getServerFacade() {
         return new ServerFacade();

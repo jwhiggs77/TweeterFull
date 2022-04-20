@@ -10,6 +10,7 @@ import edu.byu.cs.tweeter.model.domain.Status;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.net.request.PostStatusRequest;
 import edu.byu.cs.tweeter.model.net.response.PostStatusResponse;
+import edu.byu.cs.tweeter.util.Pair;
 
 /**
  * Background task that posts a new status sent by a user.
@@ -29,10 +30,10 @@ public class PostStatusTask extends AuthenticatedTask {
     }
 
     @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
         PostStatusRequest request = new PostStatusRequest(getAuthToken(), status);
         PostStatusResponse response = getServerFacade().postStatus(request, URL_PATH);
-        return response.isSuccess();
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 
     @Override

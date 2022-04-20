@@ -175,6 +175,10 @@ public class MainActivityPresenter extends Presenter {
     }
 
     public void postStatus(Status newStatus) {
-        getStatusService().postStatus(newStatus, new PostStatusObserver());
+        getStatusService().postStatus(newStatus, postStatusObserverFactory());
+    }
+
+    public PostStatusObserver postStatusObserverFactory() {
+        return new PostStatusObserver();
     }
 }

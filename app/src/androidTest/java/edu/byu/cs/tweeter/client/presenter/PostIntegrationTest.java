@@ -1,8 +1,8 @@
-package edu.byu.cs.tweeter.client.model.service;
+package edu.byu.cs.tweeter.client.presenter;
 
 import static org.junit.Assert.assertEquals;
 
-import android.os.Bundle;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.Status;
 import edu.byu.cs.tweeter.model.domain.User;
 
-public class PostIntegrationTest {
+public class PostIntegrationTest extends TestCase {
     private UserService userService;
     private MainActivityPresenter.View view;
     private MainActivityPresenter mainActivityPresenter;
@@ -67,8 +67,6 @@ public class PostIntegrationTest {
         }).when(mainActivityPresenter).postStatusObserverFactory();
 
         Mockito.doNothing().when(view).displayMessage(Mockito.anyString());
-
-//        Bundle mockBundle = Mockito.mock(Bundle.class);
 
         resetCountDownLatch();
     }

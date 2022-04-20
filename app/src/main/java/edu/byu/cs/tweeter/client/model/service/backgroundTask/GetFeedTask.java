@@ -10,7 +10,6 @@ import edu.byu.cs.tweeter.model.net.response.FeedResponse;
 import edu.byu.cs.tweeter.util.Pair;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Background task that retrieves a page of statuses from a user's feed.
@@ -24,9 +23,11 @@ public class GetFeedTask extends PagedTask<Status> {
     }
 
     @Override
-    protected Pair<List<Status>, Boolean> getItems() throws IOException, TweeterRemoteException {
+    protected Pair<Boolean, String> getItems() throws IOException, TweeterRemoteException {
         FeedRequest request = new FeedRequest(getAuthToken(), getTargetUser(), getLimit(), getLastItem());
         FeedResponse response = getServerFacade().getFeed(request, URL_PATH);
-        return new Pair<>(response.getFeed(), response.isSuccess());
+        setItems(response.getFeed());
+        setHasMorePages(response.getHasMorePages());
+        return new Pair<>(response.isSuccess(), response.getMessage());
     }
 }

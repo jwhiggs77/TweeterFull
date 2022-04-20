@@ -2,17 +2,20 @@ package edu.byu.cs.tweeter.server.dao.concrete;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.BatchWriteItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.TableWriteItems;
 import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.spec.DeleteItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.GetItemSpec;
 import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
+import com.amazonaws.services.dynamodbv2.model.WriteRequest;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -23,6 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import edu.byu.cs.tweeter.model.domain.AuthToken;
@@ -83,10 +87,9 @@ public class DynamoUserDAO implements UserDAO {
         UpdateItemSpec updateItemSpec = getUpdateItemSpec(currentUser, count, iterate, countType);
 
         try {
-            System.out.println("Updating the item...");
+//            System.out.println("Updating the item...");
             UpdateItemOutcome outcome = userTable.updateItem(updateItemSpec);
-            System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
-
+//            System.out.println("UpdateItem succeeded:\n" + outcome.getItem().toJSONPretty());
         }
         catch (Exception e) {
             System.err.println("Unable to update count for: " + currentUser.getAlias());
@@ -111,12 +114,12 @@ public class DynamoUserDAO implements UserDAO {
     @Override
     public LogoutResponse logout(LogoutRequest request) {
         DeleteItemSpec deleteItemSpec = new DeleteItemSpec()
-                .withPrimaryKey(new PrimaryKey("token", request.getAuthToken()));
+                .withPrimaryKey(new PrimaryKey("token", request.getAuthToken().getToken()));
 
         try {
-            System.out.println("Attempting a conditional delete...");
+//            System.out.println("Attempting a conditional delete...");
             authTokenTable.deleteItem(deleteItemSpec);
-            System.out.println("DeleteItem succeeded");
+//            System.out.println("DeleteItem succeeded");
         }
         catch (Exception e) {
             System.err.println("Unable to delete authToken");
@@ -138,9 +141,9 @@ public class DynamoUserDAO implements UserDAO {
         GetItemSpec spec = new GetItemSpec().withPrimaryKey("alias", username);
         User retrievedUser = null;
         try {
-            System.out.println("Attempting to read the item...");
+//            System.out.println("Attempting to read the item...");
             Item outcome = userTable.getItem(spec);
-            System.out.println("GetItem succeeded: " + outcome);
+//            System.out.println("GetItem succeeded: " + outcome);
             retrievedUser = new User(outcome.getString("firstName"), outcome.getString("lastName"), outcome.getString("alias"), outcome.getString("password"), outcome.getString("image"));
         }
         catch (Exception e) {
@@ -155,15 +158,16 @@ public class DynamoUserDAO implements UserDAO {
         User currentUser = null;
         AuthToken authToken = null;
         try {
-            System.out.println("Attempting to read the user item...");
+//            System.out.println("Attempting to read the user item...");
             Item outcome = userTable.getItem(spec);
+            if (outcome == null) return new LoginResponse("User does not exist");
             String userPassword = getSecurePassword(password, outcome.getString("salt"));
-            System.out.println(userPassword + " --- " + outcome.getString("password"));
+//            System.out.println(userPassword + " --- " + outcome.getString("password"));
             if (!userPassword.equals(outcome.getString("password"))) return new LoginResponse("Incorrect password");
             currentUser = new User(outcome.get("firstName").toString(), outcome.get("lastName").toString(), outcome.get("alias").toString(), outcome.get("password").toString(), outcome.get("image").toString());
-            System.out.println("GetItem succeeded: " + outcome);
+//            System.out.println("GetItem succeeded: " + outcome);
             authToken = new AuthToken(String.valueOf(UUID.randomUUID()));
-            authTokenTable.putItem(new Item().withPrimaryKey("token", authToken.token).withString("alias", username));
+            authTokenTable.putItem(new Item().withPrimaryKey("token", authToken.getToken()).withString("alias", username).withString("timeStamp", authToken.getDatetime()));
         }
         catch (Exception e) {
             System.err.println("Unable to read item: " + username);
@@ -173,11 +177,11 @@ public class DynamoUserDAO implements UserDAO {
     }
 
     private RegisterResponse addNewUser(Table userTable, Table authTokenTable, String firstName, String lastName, String username, String password) {
-        String imageURL = "https://s3.us-west-2.amazonaws.com/org.higgi27.tweeter.profile.picture.bucket/profilePic";
+        String imageURL = "https://s3.us-west-2.amazonaws.com/org.higgi27.tweeter.profile.picture.bucket/%40" + username.substring(1, username.length());
 
         AuthToken authToken;
         try {
-            System.out.println("Adding a new item...");
+//            System.out.println("Adding a new item...");
             String salt = getSalt();
             password = getSecurePassword(password, salt);
             PutItemOutcome outcome = userTable
@@ -185,12 +189,11 @@ public class DynamoUserDAO implements UserDAO {
                             .withString("firstName", firstName).withString("lastName", lastName)
                             .withString("password", password).withString("image", imageURL).withInt("followerCount", 0).withInt("followingCount", 0).withString("salt", salt));
 
-            String token = String.valueOf(UUID.randomUUID());
+            authToken = new AuthToken(String.valueOf(UUID.randomUUID()));
             PutItemOutcome authOutcome = authTokenTable
-                    .putItem(new Item().withPrimaryKey("token", token).withString("alias", username));
+                    .putItem(new Item().withPrimaryKey("token", authToken.getToken()).withString("alias", username).withString("timeStamp", authToken.getDatetime()));
 
-            authToken = new AuthToken(token);
-            System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
+//            System.out.println("PutItem succeeded:\n" + outcome.getPutItemResult());
         }
         catch (Exception e) {
             System.err.println("Unable to add item: " + username);
@@ -241,6 +244,53 @@ public class DynamoUserDAO implements UserDAO {
 
         // return salt
         return salt.toString();
+    }
+
+    @Override
+    public void addUserBatch(List<User> users) {
+
+        // Constructor for TableWriteItems takes the name of the table, which I have stored in TABLE_USER
+        TableWriteItems items = new TableWriteItems(userTable.getTableName());
+
+        // Add each user into the TableWriteItems object
+        for (User user : users) {
+            Item item = new Item()
+                    .withPrimaryKey("alias", user.getAlias())
+                    .withString("firstName", user.getFirstName())
+                    .withString("lastName", user.getLastName())
+                    .withString("image", user.getImageUrl())
+                    .withInt("followerCount", 0)
+                    .withInt("followeeCount", 0);
+            items.addItemToPut(item);
+
+            // 25 is the maximum number of items allowed in a single batch write.
+            // Attempting to write more than 25 items will result in an exception being thrown
+            if (items.getItemsToPut() != null && items.getItemsToPut().size() == 25) {
+                loopBatchWrite(items);
+                items = new TableWriteItems(userTable.getTableName());
+            }
+        }
+
+        // Write any leftover items
+        if (items.getItemsToPut() != null && items.getItemsToPut().size() > 0) {
+            loopBatchWrite(items);
+        }
+    }
+
+    private void loopBatchWrite(TableWriteItems items) {
+
+        // The 'dynamoDB' object is of type DynamoDB and is declared statically in this example
+        BatchWriteItemOutcome outcome = dynamoDB.batchWriteItem(items);
+        System.out.println(outcome);
+//        logger.log("Wrote User Batch");
+
+        // Check the outcome for items that didn't make it onto the table
+        // If any were not added to the table, try again to write the batch
+        while (outcome.getUnprocessedItems().size() > 0) {
+            Map<String, List<WriteRequest>> unprocessedItems = outcome.getUnprocessedItems();
+            outcome = dynamoDB.batchWriteItemUnprocessed(unprocessedItems);
+            System.out.println(outcome);
+        }
     }
 
     /**

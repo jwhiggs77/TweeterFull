@@ -15,7 +15,7 @@ public class s3DAO implements PicDAO {
     private final static String BUCKET_NAME = "org.higgi27.tweeter.profile.picture.bucket";
 
     @Override
-    public void upload(String image) {
+    public void upload(String image, String username) {
         byte[] profilePic = Base64.getDecoder().decode(image);
         InputStream inputStream = new ByteArrayInputStream(profilePic);
         ObjectMetadata data = new ObjectMetadata();
@@ -26,6 +26,6 @@ public class s3DAO implements PicDAO {
         AmazonS3 s3client = AmazonS3ClientBuilder
                 .standard().withRegion(REGION).build();
 
-        s3client.putObject(BUCKET_NAME, "profilePic", inputStream, data);
+        s3client.putObject(BUCKET_NAME, username, inputStream, data);
     }
 }

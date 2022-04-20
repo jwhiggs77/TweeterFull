@@ -3,12 +3,19 @@ package edu.byu.cs.tweeter.server.service;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
+import com.amazonaws.services.lambda.runtime.events.SQSEvent;
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import com.amazonaws.services.sqs.model.SendMessageRequest;
+import com.amazonaws.services.sqs.model.SendMessageResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.byu.cs.tweeter.DTO.PostStatusDTO;
 import edu.byu.cs.tweeter.model.domain.Status;
 import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.net.JsonSerializer;
 import edu.byu.cs.tweeter.model.net.request.FeedRequest;
 import edu.byu.cs.tweeter.model.net.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.net.request.PostStatusRequest;
@@ -43,19 +50,35 @@ public class StatusService {
 
     public StoryResponse getStory(StoryRequest request) {
         List<Status> stories = new ArrayList<>();
-        Pair<ItemCollection<QueryOutcome>, Boolean> storyItems = factory.makeStatusDAO().getStory(request);
+        Pair<List<Status>, Boolean> storyItems = factory.makeStatusDAO().getStory(request);
 
-        for (Item statusItem : storyItems.getFirst()) {
-            User addUser = factory.makeUserDAO().getUser(new UserRequest(statusItem.getString("senderAlias"))).getUser();
-            stories.add(new Status(statusItem.getString("post"), addUser, statusItem.getString("timeStamp"),
-                    statusItem.getList("urls"), statusItem.getList("mentions")));
+        for (Status status : storyItems.getFirst()) {
+            User addUser = factory.makeUserDAO().getUser(new UserRequest(status.getUser().getAlias())).getUser();
+            status.setUser(addUser);
+            stories.add(status);
         }
 
         return new StoryResponse(stories, storyItems.getSecond());
     }
 
+//    public PostStatusResponse postStatus(PostStatusRequest request) {
+//        Pair<List<String>, Boolean> followers = factory.makeFollowDAO().getFollowers(new FollowersRequest(request.getAuthToken(), request.getStatus().getUser().getAlias(), 10000, null));
+//        return factory.makeStatusDAO().postStatus(request, followers.getFirst());
+//    }
+
     public PostStatusResponse postStatus(PostStatusRequest request) {
-        Pair<List<String>, Boolean> followers = factory.makeFollowDAO().getFollowers(new FollowersRequest(request.getAuthToken(), request.getStatus().getUser().getAlias(), 10000, null));
-        return factory.makeStatusDAO().postStatus(request, followers.getFirst());
+        String queueUrl = "https://sqs.us-west-2.amazonaws.com/121950966543/postStatusQueue";
+
+        factory.makeStatusDAO().postStory(request);
+
+        SendMessageRequest send_msg_request = new SendMessageRequest().withQueueUrl(queueUrl).withMessageBody(JsonSerializer.serialize(request));
+        AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
+        SendMessageResult send_msg_result = sqs.sendMessage(send_msg_request);
+
+        return new PostStatusResponse(request.getStatus());
+    }
+
+    public void postToFeeds(List<PostStatusDTO> statusDTOS) {
+        factory.makeStatusDAO().addStatusBatch(statusDTOS);
     }
 }

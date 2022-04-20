@@ -58,17 +58,20 @@ public abstract class PagedTask<T> extends AuthenticatedTask {
         msgBundle.putBoolean(MORE_PAGES_KEY, hasMorePages);
     }
 
-    @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
-        Pair<List<T>, Boolean> pageOfUsers = getItems();
-
-        items = pageOfUsers.getFirst();
-        hasMorePages = pageOfUsers.getSecond();
-        sendSuccessMessage();
-        return true;
+    public void setItems(List<T> items) {
+        this.items = items;
     }
 
-    protected abstract Pair<List<T>, Boolean> getItems() throws IOException, TweeterRemoteException;
+    public void setHasMorePages(boolean hasMorePages) {
+        this.hasMorePages = hasMorePages;
+    }
+
+    @Override
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
+        return getItems();
+    }
+
+    protected abstract Pair<Boolean, String> getItems() throws IOException, TweeterRemoteException;
 
 
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
+import edu.byu.cs.tweeter.util.Pair;
 
 public abstract class GetCountTask extends AuthenticatedTask {
     /**
@@ -30,13 +31,16 @@ public abstract class GetCountTask extends AuthenticatedTask {
     }
 
 
-    @Override
-    protected boolean processTask() throws IOException, TweeterRemoteException {
-        count = getCount();
-        return true;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    protected abstract int getCount() throws IOException, TweeterRemoteException;
+    @Override
+    protected Pair<Boolean, String> processTask() throws IOException, TweeterRemoteException {
+        return getCount();
+    }
+
+    protected abstract Pair<Boolean, String> getCount() throws IOException, TweeterRemoteException;
 
     @Override
     protected void loadSuccessBundle(Bundle msgBundle) {

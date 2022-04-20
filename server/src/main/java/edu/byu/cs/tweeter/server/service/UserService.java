@@ -35,18 +35,10 @@ public class UserService {
         if (request.getFirstName() == null) return new RegisterResponse("[BadRequest] Missing a first name");
         if (request.getLastName() == null) return new RegisterResponse("[BadRequest] Missing a last name");
 
-        factory.makePicDAO().upload(request.getImage());
+        factory.makePicDAO().upload(request.getImage(), request.getUsername());
 
         return factory.makeUserDAO().register(request);
     }
-
-//    private <T> T checkInput(String input, T response) {
-//        if(input == null){
-////            throw new RuntimeException("[BadRequest] Missing a " + message);
-//            return response;
-//        }
-//        return null;
-//    }
 
     public UserResponse getUser(UserRequest request) {
         return factory.makeUserDAO().getUser(request);

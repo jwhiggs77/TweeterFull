@@ -58,27 +58,6 @@ public class Main {
             followListItem.add(josh.getName());
 
             followList.add(followListItem);
-//
-//            LoginRequest loginRequest = new LoginRequest("@user"+j, "password");
-//            LoginHandler handler = new LoginHandler();
-//            LoginResponse loginResponse = handler.handleRequest(loginRequest, null);
-
-//            FollowHandler followHandler = new FollowHandler();
-//            FollowRequest followRequest = new FollowRequest(new AuthToken("72dc2ddb-0c8b-450e-927f-93e0efcc6706"), loginResponse.getUser());
-//            FollowResponse followResponse = followHandler.handleRequest(followRequest, null);
-
-//            FollowRequest followRequest1 = new FollowRequest(null, josh);
-//            FollowResponse followResponse1 = followHandler.handleRequest(followRequest1, null);
-
-//            User currentUser = temp;
-//            FollowResponse followResponse = factory.makeFollowDAO().follow(followRequest1, currentUser);
-
-
-//            List<String> mentions = new ArrayList<String>();
-//            List<String> urls = new ArrayList<String>();
-//            PostStatusRequest postStatusRequest = new PostStatusRequest(loginResponse.getAuthToken(), new Status("This post" + i, user, LocalDateTime.now().toString(), urls, mentions));
-//            PostStatusHandler postStatusHandler = new PostStatusHandler();
-//            PostStatusResponse postStatusResponse = postStatusHandler.handleRequest(postStatusRequest, null);
 
             if (userList.size() >= 25) {
                 dynamoUserDAO.addUserBatch(userList);
@@ -97,58 +76,5 @@ public class Main {
         }
         dynamoUserDAO.addUserBatch(userList);
         dynamoFollowDAO.addFollowBatch(followList);
-
-//        FeedRequest feedRequest = new FeedRequest(loginResponse.getAuthToken(), josh, 10, null);
-//        GetFeedHandler feedHandler = new GetFeedHandler();
-//        FeedResponse feedResponse = feedHandler.handleRequest(feedRequest, null);
-////
-//        StoryRequest storyRequest = new StoryRequest(loginResponse.getAuthToken(), josh, 10, null);
-//        GetStoryHandler getStoryHandler = new GetStoryHandler();
-//        StoryResponse storyResponse = getStoryHandler.handleRequest(storyRequest, null);
-//
-//        FollowersRequest followersRequest = new FollowersRequest(loginResponse.getAuthToken(), "@higgi", 10, null);
-//        GetFollowersHandler getFollowersHandler = new GetFollowersHandler();
-//        FollowersResponse followersResponse = getFollowersHandler.handleRequest(followersRequest, null);
-////
-//        FollowingRequest followingRequest = new FollowingRequest(loginResponse.getAuthToken(), "@higgi", 10, null);
-//        GetFollowingHandler getFollowingHandler = new GetFollowingHandler();
-//        FollowingResponse followingResponse = getFollowingHandler.handleRequest(followingRequest, null);
-//
-//        List<String> mentions = new ArrayList<String>(Arrays.asList());
-//        List<String> urls = new ArrayList<String>(Arrays.asList());
-//        PostStatusRequest postStatusRequest = new PostStatusRequest(loginResponse.getAuthToken(), new Status("Hello world", josh, LocalDateTime.now().toString(), urls, mentions));
-//        PostStatusHandler postStatusHandler = new PostStatusHandler();
-//        PostStatusResponse postStatusResponse = postStatusHandler.handleRequest(postStatusRequest, null);
-//
-////        FollowRequest followRequest = new FollowRequest(authToken, registerResponse.getUser());
-////        FollowHandler followHandler = new FollowHandler();
-////        FollowResponse followResponse = followHandler.handleRequest(followRequest, null);
-//
-//        FollowersCountRequest followersCountRequest = new FollowersCountRequest(authToken, josh);
-//        GetFollowersCountHandler getFollowersCountHandler = new GetFollowersCountHandler();
-//        FollowersCountResponse followersCountResponse = getFollowersCountHandler.handleRequest(followersCountRequest, null);
-//
-//        FollowingCountRequest followingCountRequest = new FollowingCountRequest(authToken, josh);
-//        GetFollowingCountHandler getFollowingCountHandler = new GetFollowingCountHandler();
-//        FollowingCountResponse followingCountResponse = getFollowingCountHandler.handleRequest(followingCountRequest, null);
-
-//        IsFollowerRequest isFollowerRequest = new IsFollowerRequest(loginResponse.getAuthToken(), josh, user);
-//        IsFollowerHandler isFollowerHandler = new IsFollowerHandler();
-//        IsFollowerResponse isFollowerResponse = isFollowerHandler.handleRequest(isFollowerRequest, null);
-
-//        UnfollowRequest unfollowRequest = new UnfollowRequest(user10, loginResponse.getAuthToken());
-//        UnfollowHandler unfollowHandler = new UnfollowHandler();
-//        UnfollowResponse unfollowResponse = unfollowHandler.handleRequest(unfollowRequest, null);
-
-//        List<String> mentions = new ArrayList<String>(Arrays.asList());
-//        List<String> urls = new ArrayList<String>(Arrays.asList());
-//        List<PostStatusDTO> myList = new ArrayList<>();
-//        DynamoStatusDAO dynamoStatusDAO = new DynamoStatusDAO();
-//        for (int i = 0; i < 25; i++) {
-//            PostStatusDTO postStatusDTO = new PostStatusDTO(new Status("Genius, Billionaire, Playboy, Philanthropist", ironman, LocalDateTime.now().toString(), urls, mentions), "@user"+i);
-//            myList.add(postStatusDTO);
-//        }
-//        dynamoStatusDAO.addStatusBatch(myList);
-
     }
 }
